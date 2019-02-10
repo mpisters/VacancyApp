@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Vacancy} from '../shared/vacancy.model';
 
 @Component({
   selector: 'app-application-page',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./application-page.component.css']
 })
 export class ApplicationPageComponent implements OnInit {
-
+  @Input() vacancy: Vacancy;
   constructor() { }
 
   ngOnInit() {
