@@ -42,7 +42,7 @@
     </div>
     <div class="application-form__item">
       <label for="dateOfBirth">Date of Birth</label>
-      <input id="dateOfBirth" formControlName="dateOfBirth" class="form-control">
+      <input type="date" id="dateOfBirth" formControlName="dateOfBirth" class="form-control">
       <span class="help-block" *ngIf="invalidInputValue('personalInformation.dataOfBirth')">Please enter your date of birth.</span>
     </div>
     <button class="btn btn-primary"  [disabled]="!applicationForm.get('personalInformation').valid" (click)="toNext()">Next</button>
@@ -65,25 +65,27 @@
     <div class="application-form__item">
       <label for="experienceLevel">Experience Level</label>
       <select id="experienceLevel" class="form-control">
-        <option [value]="'Junior'">Junior</option>
-        <option [value]="'Junior'">Medior</option>
-        <option [value]="'Junior'">Senior</option>
+        <option [value]="'junior'">Junior</option>
+        <option [value]="'medior'">Medior</option>
+        <option [value]="'senior'">Senior</option>
       </select>
     </div>
     <div class="application-form__item">
       <label for="motivation">Motivation</label>
-      <textarea id="motivation" formControlName="motivation" class="form-control"></textarea>
+      <textarea id="motivation" formControlName="motivation" class="form-control application-form__textarea"></textarea>
     </div>
     <div class="application-form__item">
       <label for="CV">CV</label>
-      <input type="file" id="CV" formControlName="CV" class="form-control" (change)="onFileChange($event)">
+      <input type="file" id="CV" class="form-control" (change)="onFileChange($event)">
+      <input type="hidden" name="fileHidden" formControlName="CV" class="form-control">
+      <p>Only pdf, rtf, text, and doc(x) are allowed file types.</p>
       <span class="help-block" *ngIf="invalidInputValue('applicationInformation.CV') && applicationForm.get('applicationInformation.CV').errors['notAllowedExtensionFile']">Please upload a valid CV.</span>
     </div>
     <button class="btn btn-primary"  [disabled]="!applicationForm.valid" (click)="onSubmit()">Submit</button>
 
   </div>
   <div *ngIf="currentStep === 5" class="application-form__final">
-    <h1>Thank you for your application!
+    <h1>Thank you {{applicationForm.get('personalInformation.firstName').value}} for your application!
     </h1>
     <p>We will contact you as soon as possible.</p>
   </div>

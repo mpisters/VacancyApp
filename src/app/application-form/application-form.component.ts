@@ -1,5 +1,6 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {JobApplication} from '../shared/job-application.model';
 
 @Component({
   selector: 'app-application-form',
@@ -8,9 +9,9 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class ApplicationFormComponent implements OnInit {
   applicationForm: FormGroup;
-  currentStep = 4;
+  currentStep = 1;
 
-  constructor(private cd: ChangeDetectorRef) {
+  constructor() {
   }
 
   ngOnInit() {
@@ -51,7 +52,7 @@ export class ApplicationFormComponent implements OnInit {
     const allowedExtensions = ['doc', 'docx', 'pdf', 'rtf', 'txt'];
     if (control.value !== null) {
       console.log(control.value);
-      const extensionFile = control.value.split('.').pop();
+      const extensionFile = control.value.split('.').pop().toLocaleLowerCase();
       if (allowedExtensions.indexOf(extensionFile) === -1) {
         return {notAllowedExtensionFile: true};
       }
@@ -76,7 +77,20 @@ export class ApplicationFormComponent implements OnInit {
 
   onSubmit() {
     this.currentStep++;
-    console.log(this.applicationForm);
+    const jobApplication = new JobApplication(
+      'jrfrontendAmazon1',
+      this.applicationForm.get('connect.email').value,
+      this.applicationForm.get('connect.phoneNumber').value,
+      this.applicationForm.get('personalInformation.firstName').value,
+      this.applicationForm.get('personalInformation.middleName').value,
+      this.applicationForm.get('personalInformation.lastName').value,
+      this.applicationForm.get('personalInformation.dataOfBirth').value,
+      this.applicationForm.get('place.zipCode').value,
+      this.applicationForm.get('place.houseNumber').value,
+      this.applicationForm.get('applicationInformation.experienceLevel').value,
+      this.applicationForm.get('applicationInformation.motivation').value,
+      this.applicationForm.get('applicationInformation.CVname').value,
+    );
   }
 
   invalidInputValue(nameInput: string) {
@@ -87,22 +101,23 @@ export class ApplicationFormComponent implements OnInit {
   }
 
   onFileChange(event) {
-    const reader = new FileReader();
-
     if (event.target.files && event.target.files.length) {
-      const [file] = event.target.files;
-      reader.readAsDataURL(file);
+      const file = event.target.files[0];
+      this.applicationForm.patchValue({applicationInformation: {CV: file ? file.name : ' '}});
 
-      reader.onload = () => {
-        this.applicationForm.patchValue({
-          applicationInformation: {
-            CV: reader.result
-          }
-        });
+      // ToDo send file to server
+      // const reader = new FileReader();
+      // reader.readAsDataURL(file);
+      // reader.onload = () => {
+      //   this.applicationForm.patchValue({
+      //     applicationInformation: {
+      //       CV: reader.result
+      //     }
+      //   });
 
-        // need to run CD since file load runs outside of zone
-        this.cd.markForCheck();
-      };
+      // need to run CD since file load runs outside of zone
+      // this.cd.markForCheck();
+      // };
     }
   }
 

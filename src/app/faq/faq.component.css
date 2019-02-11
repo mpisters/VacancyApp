@@ -1,0 +1,10 @@
+.fag-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.faq__question:not(.faq__answer) {
+  /*font-weight: 800;*/
+}
