@@ -8,7 +8,8 @@ import {Vacancy} from './shared/vacancy.model';
 })
 export class AppComponent {
   title = 'VacancyApp';
-  exampleVacancy = new Vacancy('Junior Front-end Developer',
+  exampleVacancy = new Vacancy(1,
+    'Junior Front-end Developer',
     'Amazon',
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus, diam ' +
     'sed molestie convallis, nisi lectus cursus nibh, non maximus leo ' +

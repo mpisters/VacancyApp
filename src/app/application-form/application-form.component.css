@@ -1,0 +1,43 @@
+.progress-bar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: sans-serif;
+  padding: 10px;
+  width: 100%;
+  background-color: #345b5d;
+  color: white;
+  font-size: 1em;
+}
+
+.progress-bar__step{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  line-height: 80px;
+  text-align: center;
+  background: cadetblue;
+}
+
+.progress-bar__step_active{
+  background-color: darkgoldenrod;
+}
+
+.application-form {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+.application-form__connect, .application-form__personal-information, .application-form__place, .application-form__applicationInformation, .app-application-form__final{
+  margin: 10px;
+  max-width: 100%;
+}
+
+.application-form__item{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+input.ng-invalid.ng-touched, select.ng-invalid.ng-touched {
+  border: 1px solid red;
+}

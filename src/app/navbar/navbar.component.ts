@@ -14,8 +14,8 @@ export class NavbarComponent implements OnInit {
   }
 
   openMenu(): void {
-    const navs = document.querySelectorAll('.navbar__items');
-    navs.forEach(nav => nav.classList.toggle('navbar__toggleShow'));
+    const navs = document.querySelectorAll('.header__items');
+    navs.forEach(nav => nav.classList.toggle('header__toggleShow'));
   }
 
 }
