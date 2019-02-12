@@ -22,6 +22,7 @@ export class ApplicationFormComponent implements OnInit {
           phoneNumber: new FormControl(null, [Validators.required, this.isDutchPhoneNumber.bind(this)]),
         }),
         personalInformation: new FormGroup({
+          gender: new FormControl('female', Validators.required),
           firstName: new FormControl(null, Validators.required),
           middleName: new FormControl(null),
           lastName: new FormControl(null, [Validators.required]),
@@ -30,6 +31,7 @@ export class ApplicationFormComponent implements OnInit {
         place: new FormGroup({
           zipCode: new FormControl(null, [Validators.required, this.isDutchZipCode.bind(this)]),
           houseNumber: new FormControl(null, [Validators.required, Validators.min(1), Validators.max(1000000)]),
+          annex: new FormControl(null),
         }),
         applicationInformation: new FormGroup({
           experienceLevel: new FormControl('junior', [Validators.required]),
@@ -78,15 +80,17 @@ export class ApplicationFormComponent implements OnInit {
       'jrfrontendAmazon1',
       this.applicationForm.get('connect.email').value,
       this.applicationForm.get('connect.phoneNumber').value,
+      this.applicationForm.get('personalInformation.gender').value,
       this.applicationForm.get('personalInformation.firstName').value,
-      this.applicationForm.get('personalInformation.middleName').value,
+      this.applicationForm.get('personalInformation.middleName').value || '',
       this.applicationForm.get('personalInformation.lastName').value,
-      this.applicationForm.get('personalInformation.dataOfBirth').value,
+      this.applicationForm.get('personalInformation.dataOfBirth').value || '',
       this.applicationForm.get('place.zipCode').value,
       this.applicationForm.get('place.houseNumber').value,
+      this.applicationForm.get('place.annex').value || '',
       this.applicationForm.get('applicationInformation.experienceLevel').value,
-      this.applicationForm.get('applicationInformation.motivation').value,
-      this.applicationForm.get('applicationInformation.CVname').value,
+      this.applicationForm.get('applicationInformation.motivation').value || '',
+      this.applicationForm.get('applicationInformation.CVname').value || '',
     );
   }
 

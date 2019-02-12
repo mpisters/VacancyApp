@@ -47,3 +47,35 @@ input.ng-invalid.ng-touched, select.ng-invalid.ng-touched {
 .application-form__textarea{
   height: 200px;
 }
+
+.application-form__item__house-number{
+  display: flex;
+}
+
+
+
+.house_number{
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+.annex{
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  margin: 5px;
+}
+
+.application-form__gender{
+  display: flex;
+  flex-direction: column;
+}
+
+.gender-radio{
+  display: flex;
+}
+
+.gender-radio input{
+  margin-left: 15px;
+  margin-right: 15px;
+}
