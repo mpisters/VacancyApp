@@ -1,6 +1,7 @@
 <div class="application-page">
 <header class="application-page__header">
     <div class="header__vacancy_title">
+      <h4>You are applying for: </h4>
       <h1>{{vacancy.title}}</h1>
     </div>
     <div class="header__vacancy_subtitle">
@@ -9,6 +10,5 @@
 </header>
  <div class="application-page__description"></div>
 <app-application-form></app-application-form>
-  <hr>
-  <app-faq></app-faq>
+  <router-outlet></router-outlet>
 </div>

@@ -18,6 +18,9 @@
 }
 
 .header__vacancy_title{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-family: sans-serif;
   color: white;
 }

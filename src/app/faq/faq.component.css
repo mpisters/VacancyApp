@@ -3,8 +3,12 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  height: auto;
 }
 
-.faq__question:not(.faq__answer) {
+.faq__questions {
+}
+
+.faq__question {
   /*font-weight: 800;*/
 }

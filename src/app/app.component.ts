@@ -8,6 +8,7 @@ import {Vacancy} from './shared/vacancy.model';
 })
 export class AppComponent {
   title = 'VacancyApp';
+  currentTab = 'home'
   exampleVacancy = new Vacancy(1,
     'Junior Front-end Developer',
     'Amazon',
@@ -23,4 +24,8 @@ export class AppComponent {
     ['JavaScript', 'Agile/Scrum', 'ES6'],
     ['3500 pm', 'pension', 'amazing lunch']
   );
+
+  switchedToTab(tab) {
+    this.currentTab = tab;
+  }
 }

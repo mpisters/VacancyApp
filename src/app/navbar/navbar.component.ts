@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, Renderer2} from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -6,8 +6,10 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  @Output() switchTab = new EventEmitter();
+  currentTab = 'home';
 
-  constructor() {
+  constructor(private render: Renderer2) {
   }
 
   ngOnInit() {
@@ -16,6 +18,11 @@ export class NavbarComponent implements OnInit {
   openMenu(): void {
     const navs = document.querySelectorAll('.header__items');
     navs.forEach(nav => nav.classList.toggle('header__toggleShow'));
+  }
+
+  onSwitchTab(tab: string) {
+    this.currentTab = tab;
+    this.switchTab.emit(tab);
   }
 
 }

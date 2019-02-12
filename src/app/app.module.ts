@@ -9,6 +9,7 @@ import {ApplicationFormComponent} from './application-form/application-form.comp
 import {ApplicationPageComponent} from './application-page/application-page.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {FaqComponent} from './faq/faq.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {FaqComponent} from './faq/faq.component';
     FooterComponent,
     ApplicationFormComponent,
     ApplicationPageComponent,
-    FaqComponent
+    FaqComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
