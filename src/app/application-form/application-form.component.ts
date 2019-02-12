@@ -51,7 +51,6 @@ export class ApplicationFormComponent implements OnInit {
   allowedFileExtention(control: FormControl) {
     const allowedExtensions = ['doc', 'docx', 'pdf', 'rtf', 'txt'];
     if (control.value !== null) {
-      console.log(control.value);
       const extensionFile = control.value.split('.').pop().toLocaleLowerCase();
       if (allowedExtensions.indexOf(extensionFile) === -1) {
         return {notAllowedExtensionFile: true};
