@@ -5,6 +5,7 @@ Assignment to create a vacancy app
 * Add unit tests/E2E tests
 * Add routing
 * Add more fields
+* Add translation pipes
 
 
 ### Known Issues
