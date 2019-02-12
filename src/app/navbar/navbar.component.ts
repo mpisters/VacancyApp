@@ -16,8 +16,14 @@ export class NavbarComponent implements OnInit {
   }
 
   openMenu(): void {
-    const navs = document.querySelectorAll('.header__items');
-    navs.forEach(nav => nav.classList.toggle('header__toggleShow'));
+    // const navs = document.querySelectorAll('.header__items');
+    // navs.forEach(nav => nav.classList.toggle('header__toggleShow'));
+    document.getElementById('sidenav').style.width = '250px';
+  }
+
+  closeMenu(): void {
+    document.getElementById('sidenav').style.width = '0';
+
   }
 
   onSwitchTab(tab: string) {

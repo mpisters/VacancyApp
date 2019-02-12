@@ -70,8 +70,6 @@ export class ApplicationFormComponent implements OnInit {
   }
 
   toNext() {
-    console.log(this.applicationForm);
-    console.log(this.applicationForm.get('connect').valid);
     this.currentStep++;
   }
 
