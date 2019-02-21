@@ -1,0 +1,21 @@
+<nav class="header">
+  <div class="header__link header__link-brand">
+    VacancyApp
+  </div>
+  <div class="header__link header__link-toggle" (click)="openMenu()">
+    <i class="fas fa-bars"></i>
+  </div>
+  <div id="sidenav" class="header__items">
+    <a class="header__close-button" (click)="closeMenu()">
+      <i class="fas fa-window-close"></i>
+    </a>
+    <a [ngClass]="{'header__items__item_active': currentTab === 'home' }" class="header__items__item header__link"
+       (click)="onSwitchTab('home')" href="#">Home</a>
+    <a [ngClass]="{'header__items__item_active': currentTab === 'FAQ' }" class="header__items__item header__link"
+       (click)="onSwitchTab('FAQ')" href="#">FAQ</a>
+  </div>
+
+</nav>
+<div class="sidenav">
+
+</div>

@@ -1,0 +1,7 @@
+<div class="app__content">
+<app-navbar (switchTab)="switchedToTab($event)"></app-navbar>
+<app-application-page *ngIf="currentTab === 'home'" [vacancy]="exampleVacancy"></app-application-page>
+  <hr *ngIf="currentTab === 'home'" class="app_content__bar">
+  <app-faq></app-faq>
+</div>
+  <app-footer class="app__footer"></app-footer>

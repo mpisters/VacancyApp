@@ -1,0 +1,115 @@
+<div class="progress-bar">
+  <div [ngClass]="{'progress-bar__step_active': currentStep === 1}" class="progress-bar__step"><p>Connect</p>
+  </div>
+  <div [ngClass]="{'progress-bar__step_active': currentStep === 2}" class="progress-bar__step"><p>Personal</p>
+  </div>
+  <div [ngClass]="{'progress-bar__step_active': currentStep === 3}" class="progress-bar__step"><p>Place</p>
+  </div>
+  <div [ngClass]="{'progress-bar__step_active': currentStep === 4}" class="progress-bar__step"><p>Complete</p>
+  </div>
+</div>
+<form [formGroup]="applicationForm" class="application-form" (ngSubmit)="onSubmit()">
+  <div *ngIf="currentStep === 1" formGroupName="connect" class="application-form__connect">
+    <div class="application-form__item">
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email" class="form-control">
+      <span class="help-block" *ngIf="invalidInputValue('connect.email')">Please enter a valid email.</span>
+    </div>
+    <div class="application-form__item">
+      <label for="phoneNumber">Phone Number</label>
+      <input id="phoneNumber" formControlName="phoneNumber" class="form-control">
+      <span class="help-block"
+            *ngIf="invalidInputValue('connect.phoneNumber') && applicationForm.get('connect.phoneNumber').errors['isNotDutchPhoneNumber']">Please enter a valid phone number.</span>
+
+    </div>
+    <button class="btn btn-primary" [disabled]="!applicationForm.get('connect').valid" (click)="toNext()">Next
+    </button>
+  </div>
+  <div *ngIf="currentStep === 2" formGroupName="personalInformation" class="application-form__personal-information">
+    <div class="application-form__item application-form__gender">
+      <label>Gender</label>
+      <div class="gender-radio"><input type="radio" value='Male' formControlName="gender" class="radio">Male</div>
+      <div class="gender-radio"><input type="radio" value='Female' formControlName="gender" class="radio">Female</div>
+
+    </div>
+    <div class="application-form__item">
+      <label for="firstName">First Name</label>
+      <input id="firstName" formControlName="firstName" class="form-control">
+      <span class="help-block"
+            *ngIf="invalidInputValue('personalInformation.firstName')">Please enter your first name.</span>
+
+    </div>
+    <div class="application-form__item">
+      <label for="middleName">Middle Name</label>
+      <input id="middleName" formControlName="middleName" class="form-control">
+    </div>
+    <div class="application-form__item">
+      <label for="lastName">Last Name</label>
+      <input id="lastName" formControlName="lastName" class="form-control">
+      <span class="help-block"
+            *ngIf="invalidInputValue('personalInformation.lastName')">Please enter your last name.</span>
+
+    </div>
+    <div class="application-form__item">
+      <label for="dateOfBirth">Date of Birth</label>
+      <input type="date" id="dateOfBirth" formControlName="dateOfBirth" class="form-control">
+      <span class="help-block" *ngIf="invalidInputValue('personalInformation.dataOfBirth')">Please enter your date of birth.</span>
+    </div>
+    <button class="btn btn-primary" [disabled]="!applicationForm.get('personalInformation').valid" (click)="toNext()">
+      Next
+    </button>
+  </div>
+  <div *ngIf="currentStep === 3" formGroupName="place" class="application-form__place">
+    <div class="application-form__item">
+      <label for="zipCode">Zip Code</label>
+      <input id="zipCode" formControlName="zipCode" class="form-control">
+      <span class="help-block"
+            *ngIf="invalidInputValue('place.zipCode') && applicationForm.get('place.zipCode').errors['isNotDutchZipCode']">Please enter a valid zip code.</span>
+    </div>
+    <div class="application-form__item application-form__item__house-number">
+      <div class="house_number">
+        <label for="houseNumber">House Number</label>
+        <input id="houseNumber" formControlName="houseNumber" class="form-control">
+        <span class="help-block"
+              *ngIf="invalidInputValue('place.houseNumber')">Please enter a valid house number.</span>
+      </div>
+      <div class="annex">
+        <label for="annex">Annex</label>
+        <input id="annex" formControlName="annex" class="form-control">
+      </div>
+    </div>
+    <button class="btn btn-primary" [disabled]="!applicationForm.get('place').valid" (click)="toNext()">Next</button>
+    <!--Add toevoeging housenumber-->
+  </div>
+  <div *ngIf="currentStep === 4" formGroupName="applicationInformation"
+       class="application-form__applicationInformation">
+    <div class="application-form__item">
+      <label for="experienceLevel">Experience Level</label>
+      <select id="experienceLevel" class="form-control">
+        <option [value]="'junior'">Junior</option>
+        <option [value]="'medior'">Medior</option>
+        <option [value]="'senior'">Senior</option>
+      </select>
+    </div>
+    <div class="application-form__item">
+      <label for="motivation">Motivation</label>
+      <textarea id="motivation" formControlName="motivation"
+                class="form-control application-form__textarea"></textarea>
+    </div>
+    <div class="application-form__item">
+      <label for="CV">CV</label>
+      <input type="file" id="CV" class="form-control" (change)="onFileChange($event)">
+      <input type="hidden" name="fileHidden" formControlName="CV" class="form-control">
+      <p>Only pdf, rtf, text, and doc(x) are allowed file types.</p>
+      <span class="help-block"
+            *ngIf="invalidInputValue('applicationInformation.CV') && applicationForm.get('applicationInformation.CV').errors['notAllowedExtensionFile']">Please upload a valid CV.</span>
+    </div>
+    <button class="btn btn-primary" [disabled]="!applicationForm.valid" (click)="onSubmit()">Submit</button>
+
+  </div>
+  <div *ngIf="currentStep === 5" class="application-form__final">
+    <h1>Thank you {{applicationForm.get('personalInformation.firstName').value}} for your application!
+    </h1>
+    <p>We will contact you as soon as possible.</p>
+  </div>
+</form>

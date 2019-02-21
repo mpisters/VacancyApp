@@ -1,0 +1,14 @@
+.fag-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: auto;
+}
+
+.faq__questions {
+}
+
+.faq__question {
+  /*font-weight: 800;*/
+}

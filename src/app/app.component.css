@@ -1,0 +1,10 @@
+.app__content {
+  min-height: calc(100vh - 70px);
+}
+.app__footer {
+  height: 50px;
+}
+
+.app_content__bar{
+  border: 1px solid #4d4d4d;
+}
